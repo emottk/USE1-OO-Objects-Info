@@ -180,4 +180,105 @@ This method is actually taking our instance variables and using them - it create
 
 Awesome!
 
+I bet your programmer senses are tingling though - isn't this a lot of writing to do something pretty basic? Why do we need to create so many methods just to be able to access simple attributes? There's a solution for this!		
+
+
+##attr_reader
+If we have variables within a class that we want to be able to access, we don't have to write out several methods to do so. Instead, we can call them using the `attr_reader` property. Let's take a look at our class again.
+
+	class CellPhone
 	
+		def initialize(provider, brand, color)
+			@provider = provider
+			@brand = brand
+			@color = color
+		end 
+		
+		def provider
+			@provider
+		end
+		
+		def brand
+			@brand
+		end
+		
+		def color
+			@color
+		end
+		
+		def color=(color)
+			@color = color
+		end
+			
+		def info
+			print "I am a #{@color} #{@brand} with #{@provider}."
+		end
+		
+	end	
+
+Those first three methods are only there to help us call these attributes. Let's use the att_reader instead.
+
+	class CellPhone
+			attr_reader :provider, :brand, :color
+	
+		def initialize(provider, brand, color)
+			@provider = provider
+			@brand = brand
+			@color = color
+		end 
+		
+		def color=(color)
+			@color = color
+		end
+			
+		def info
+			print "I am a #{@color} #{@brand} with #{@provider}."
+		end
+		
+	end	
+
+Woah! With just one line of code, we got rid of three whole methods! This class works exactly the same as it did before, now it's just a lot simpler.		
+If we can do this with accessor methods, can we do it with setter methods too? Absolutely!
+
+##attr_writer
+Anything that we want to be able to reset for our class can be written as an `attr_writer`. In this case, `color` is the only attribute we have a setter method for. Let's rewrite it using `attr_writer`.
+
+
+	class CellPhone
+			attr_reader :provider, :brand, :color
+			attr_writer :color
+	
+		def initialize(provider, brand, color)
+			@provider = provider
+			@brand = brand
+			@color = color
+		end 
+			
+		def info
+			print "I am a #{@color} #{@brand} with #{@provider}."
+		end
+		
+	end
+
+So much prettier! But we can get even nicer here - what if we want to be able to access and set the same attribute? We can combine the two using `attr_accessor`. So now:
+
+
+	class CellPhone
+			attr_accessor :color
+			attr_reader :provider, :brand
+	
+		def initialize(provider, brand, color)
+			@provider = provider
+			@brand = brand
+			@color = color
+		end 
+		
+			
+		def info
+			print "I am a #{@color} #{@brand} with #{@provider}."
+		end
+		
+	end	
+
+
+This class can now both access and set the `color` attribute, and access the `provider` and `brand` as well. 
