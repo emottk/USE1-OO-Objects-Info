@@ -101,4 +101,83 @@ Great! Now we have access to all of our traits. So if I want to create a new cel
 	my_cellphone.color
 		>> "black"
 
-Awesome, we have a pretty well rounded class. But what happens if I want to change one of these traits after creating the class? I don't have any way to do that right now. But - just as we have accessor methods, we can also create setter methods. 
+Awesome, we have a pretty well rounded class. But what happens if I want to change one of these traits after creating the class? I don't have any way to do that right now. But - just as we have accessor methods, we can also create setter methods. Maybe, in this case, I want to be able to change the color of my phone. Let's look back at our class.
+
+	class CellPhone
+		
+		def initialize(provider, brand, color)
+			@provider = provider
+			@brand = brand
+			@color = color
+		end 
+		
+		def provider
+			@provider
+		end
+		
+		def brand
+			@brand
+		end
+		
+		def color
+			@color
+		end
+		
+		def color=(color)
+			@color = color
+		end
+			
+		
+	end	
+
+We've now created a method that allows us to set the color to a new value. Now I can say:
+
+	puts my_cellphone.color
+		>> "black"
+	
+	my_cellphone.color = "purple"
+	puts my_cellphone.color 
+		>>"purple"
+
+My setter method let's me change the color!
+
+I can also create instance methods within my class. These methods let me use any of the variables to print out new data. For example, let's say we wanted our cell phone to be able to print out all of it's info.
+
+	class CellPhone
+		
+		def initialize(provider, brand, color)
+			@provider = provider
+			@brand = brand
+			@color = color
+		end 
+		
+		def provider
+			@provider
+		end
+		
+		def brand
+			@brand
+		end
+		
+		def color
+			@color
+		end
+		
+		def color=(color)
+			@color = color
+		end
+			
+		def info
+			print "I am a #{@color} #{@brand} with #{@provider}."
+		end
+		
+	end	
+	
+This method is actually taking our instance variables and using them - it creates a new functionality for our cell phone.
+
+	my_cellphone.info
+		>> "I am a purple iphone with verizon"
+
+Awesome!
+
+	
